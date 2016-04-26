@@ -11,6 +11,9 @@ namespace TestService
 {
     public partial class Service1 : ServiceBase
     {
+
+        System.Threading.Timer timer;
+
         public Service1()
         {
             InitializeComponent();
@@ -18,6 +21,12 @@ namespace TestService
 
         protected override void OnStart(string[] args)
         {
+            timer = new System.Threading.Timer(DoSomething, null, 1000, 5000);
+        }
+
+        private void DoSomething(object state)
+        {
+            Debug.WriteLine("Something");
         }
 
         protected override void OnStop()
